@@ -1,4 +1,4 @@
-import { addUser } from "../../redux/userSlice";
+import { addUser } from "../../../redux/userSlice";
 import { dispatchApp, selectorApp } from "./storeHook";
 
 export const useUserActions = () => {
@@ -20,7 +20,6 @@ export const useUserActions = () => {
 
 	return { 
         addUserAction, 
-        removeUserAction,
 		getUserAction
     };
 };
