@@ -103,7 +103,7 @@ const DialogMessage = (props) => {
                 <CircularProgress size={90} style={{ width: '100%', justifyContent: 'center', display: 'flex' }}></CircularProgress> <br />
               </div>
               <Typography style={{ margin: '0px', padding: '0 56px', fontWeight: 'lighter' }}>
-                {body && body.length > 0 ? body : 'Espere un momento, por favor...'}
+                {body && body.length > 0 ? body : 'Wait a moment please...'}
               </Typography>
 
             </DialogContent>
@@ -155,15 +155,15 @@ const DialogMessage = (props) => {
         }
         <DialogActions style={{ paddingBottom: '16px', paddingRight: '24px' }}>
           {buttonCancel ?
-            <Button variant='contained' color='inherit' onClick={handleCancel}><strong>Cancelar</strong></Button>
+            <Button variant='contained' color='inherit' onClick={handleCancel}><strong>Cancel</strong></Button>
             : null
           }
           {buttonAccept ?
-            <Button variant='contained' color='primary' onClick={handleAccept}><strong>Aceptar</strong></Button>
+            <Button variant='contained' color='primary' onClick={handleAccept}><strong>Accept</strong></Button>
             : null
           }
           {buttonClose ?
-            <Button variant='contained' color='primary' onClick={handleClose}><strong>Aceptar</strong></Button>
+            <Button variant='contained' color='primary' onClick={handleClose}><strong>Accept</strong></Button>
             : null
           }
 

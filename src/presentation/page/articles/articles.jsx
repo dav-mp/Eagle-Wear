@@ -3,10 +3,10 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
-import DashboardView from './dashboardView/dashboardView'
+import ArticlesView from './articlesView/articlesView'
 
 
-const Dashboard = ({ children }) => {
+const Articles = ({ children }) => {
 
     const [isLoged, setIsLoged] = useState(null)
     const navigate = useNavigate()
@@ -15,15 +15,14 @@ const Dashboard = ({ children }) => {
       <>
         <HelmetProvider>
           <Helmet>
-            <title>Dashboard | Eagle Wear</title>
+            <title>Articles | Eagle Wear</title>
           </Helmet>
           <div>
-            <DashboardView children={children}>
-            </DashboardView>
+            <ArticlesView />
           </div>
         </HelmetProvider>
       </>
     )
 }
   
-export default Dashboard
+export default Articles
