@@ -5,8 +5,8 @@ import { ProtectedRoute } from './ProtectedRoute';
 import useAuth from '../presentation/hooks/auth/useAuth';
 
 const Login = lazy(() => import('../presentation/page/login/login'))
+const Dashboard = lazy(() => import('../presentation/page/dashboard/dashboard'))
 // const Demo = lazy(() => import('../pages/DemoPage'))
-// const Dashboard = lazy(() => import('../Layout/DashboardIndex/DashboardIndex'))
 // const NewBorn = lazy(() => import('../pages/NewBorn/NewBorn'))
 
 
@@ -21,9 +21,17 @@ const AppRouter = () => {
         {/* <Login /> */}
         <Routes>
           {/* <Route path="/" element={<Layout />}> */}
-            <Route path="/" element={<Login user={user}/>} />
+            <Route path="/login" element={<Login user={user}/>} />
 
-            
+            <Route element={<ProtectedRoute allowed={user.email} />}>
+              {/* El dashboard siempre se renderiza después de pasar la ruta protegida */}
+              <Route path="/" element={<Dashboard />}>
+                {/* Rutas internas del Dashboard */}
+                {/* <Route path="/" element={<Suspense fallback={<Spiner />}><h1>HOLAAAAA</h1></Suspense>} /> */}
+                {/* <Route path="/NewBornPlan" element={<Suspense fallback={<Spiner />}><NewBorn /></Suspense>} /> */}
+                {/* Puedes agregar más rutas dentro del Dashboard según necesites */}
+              </Route>
+            </Route>
 
             <Route path='*' element={<h1>Sin info</h1>}/>
           {/* </Route> */}

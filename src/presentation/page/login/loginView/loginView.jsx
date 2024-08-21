@@ -23,9 +23,13 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { useForm } from 'react-hook-form';
+
 import { useUserActions } from '../../../hooks/store/useUserActionsStore';
 import { AuthLoginApplication } from '../../../../application/authUser/authuser.application';
+
 import DialogMessage from '../../../components/DialogMessage/DialogMessage';
+
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -34,11 +38,11 @@ const defaultTheme = createTheme();
 
 
 const loginView = () => {
+    const navigate = useNavigate()
 
     const { addUserAction } = useUserActions()
 
     const [showPassword, setShowPassword] = useState(false);
-    const [rememberStatus, setRememberStatus] = useState(false)
     const [objDialogMessage, setobjDialogMessage] = useState({
         title: '',
         body: '',
@@ -78,7 +82,7 @@ const loginView = () => {
             body: '',
             buttonCancel: false,
             buttonAccept: false,
-            buttonClose: true,
+            buttonClose: false,
             type: 1
         })
         setDialog(true)
@@ -96,17 +100,16 @@ const loginView = () => {
                     const token = Cookies.get('token');
                     
                 }
-                if (rememberStatus) {
-                    addUserAction(data)
-                }
-                // navigate('/')
+                addUserAction(data)
+                navigate('/')
                 reset();
+                setDialog(false)
             })
             .catch(err => {
                 console.log(err);
                 setobjDialogMessage({
                     title: '',
-                    body: 'Error al iniciar sesion, favor de volver a intentar',
+                    body: 'Error logging in, please try again',
                     buttonCancel: false,
                     buttonAccept: false,
                     buttonClose: true,
@@ -115,10 +118,6 @@ const loginView = () => {
             })
 
     });
-
-    const remember = (e) => {
-      setRememberStatus( !rememberStatus )
-    }
 
     const handleAcceptDialog = () => {
       setDialog(false)
@@ -160,7 +159,8 @@ const loginView = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: '100%',
-                height: 1
+                height: 1,
+                mt: 25
             }}
         >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -177,10 +177,10 @@ const loginView = () => {
                 label="Email"
                 value={email} 
                 {...register("email", { 
-                    required: "El correo es obligatorio", 
+                    required: "Email is mandatory", 
                     pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "El correo no es válido"
+                    message: "The email is not valid"
                     }
                 })}/>
                 {errors.email && <Typography variant='body1' color={'red'}>{errors.email.message}</Typography>}
@@ -206,21 +206,15 @@ const loginView = () => {
                 {...register("password", {
                     required: {
                     value: true,
-                    message: "Contraseña es requerida",
+                    message: "Contraseña is mandatory",
                     },
                     minLength: {
                     value: 6,
-                    message: "Contraseña debe ser mayor a 6 caracteres",
+                    message: "Password must be greater than 6 characters",
                     },
                 })}
                 />
                 {errors.password && <Typography variant='body1' color={'red'}>{errors.password.message}</Typography>}
-                <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                    value={true}
-                    onChange={remember}
-                />
                 <Button
                     type="submit"
                     fullWidth
@@ -229,7 +223,7 @@ const loginView = () => {
                 >
                     Sign In
                 </Button>
-                <Grid container spacing={3} padding={5}>
+                <Grid container spacing={3} padding={7}>
                     <Grid item >
                     <Link href="#" variant="body2">
                         {"Don't have an account? Sign Up"}

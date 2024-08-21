@@ -19,18 +19,16 @@ const Login = ({ user }) => {
 
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <title>Login | Eagle Wear</title>
-          <meta name="description" content="Descripción de mi aplicación" />
-        </Helmet>
-        <div style={{ width: '100%' }}>
-            {!isLoged.email
-            ? <LoginView />
-            : null
-            }
-        </div>
-      </HelmetProvider>
+      {!isLoged.email
+        ? <HelmetProvider>
+            <Helmet>
+              <title>Eagle Wear</title>
+            </Helmet>
+            <div style={{ width: '100%' }}>
+                <LoginView />
+            </div>
+          </HelmetProvider>
+        : null}
     </>
   )
 }
