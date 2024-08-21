@@ -23,6 +23,7 @@ const AppRouter = () => {
           {/* <Route path="/" element={<Layout />}> */}
             <Route path="/" element={<Login user={user}/>} />
 
+            
 
             <Route path='*' element={<h1>Sin info</h1>}/>
           {/* </Route> */}
