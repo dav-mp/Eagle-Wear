@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './userSlice'
+import productReducer from './productSlice'
 
 
 const persistanceLocalStorageMiddleware = (store) => (next) => (action) => {
@@ -18,7 +19,8 @@ const syncWithDatabaseMiddleware = store => next => action => {
 
 export const store = configureStore({
     reducer: {
-        user: userReducer
+        user: userReducer,
+        product: productReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
         persistanceLocalStorageMiddleware, 

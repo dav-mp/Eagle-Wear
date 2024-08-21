@@ -3,8 +3,13 @@ import { Grid, Button, Typography, Stack, Pagination, Select, MenuItem, FormCont
 import SkeletonCard from '../../../components/articlesSkeleton/articlesSkeleton';
 import { getAllProductsApplication } from '../../../../application/products/products.application';
 import DialogMessage from '../../../components/DialogMessage/DialogMessage';
+import { useProductActions } from '../../../hooks/store/useProductActionsStore';
 
 const ArticlesView = () => {
+
+
+    const { addAllProductsAction } = useProductActions()
+
     const [isLoadingData, setIsLoadingData] = useState(true);
     const [products, setProducts] = useState([]);
     const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -73,6 +78,7 @@ const ArticlesView = () => {
     const getAllProducts = () => {
         getAllProductsApplication()
             .then(resp => {
+                addAllProductsAction(resp)
                 setLimitPriceFunction(resp)
                 setProducts(resp);
                 setCategories([...new Set(resp.map(product => product.category))]);

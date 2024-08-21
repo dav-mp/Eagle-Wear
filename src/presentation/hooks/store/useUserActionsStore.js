@@ -13,8 +13,8 @@ export const useUserActions = () => {
 	  	return user
 	}
 
-	const addUserAction = ({ email, password }) => {
-		dispatch(addUser({ email, password }))
+	const addUserAction = ({ email }) => {
+		dispatch(addUser({ email }))
 	}
 
 
