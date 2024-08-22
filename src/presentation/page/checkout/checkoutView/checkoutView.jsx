@@ -4,28 +4,6 @@ import { useSelector } from 'react-redux';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import useNavigationUtil from '../../../../utils/GotoPath';
-const products = [
-    {
-      name: 'Professional plan',
-      desc: 'Monthly subscription',
-      price: '$15.00',
-    },
-    {
-      name: 'Dedicated support',
-      desc: 'Included in the Professional plan',
-      price: 'Free',
-    },
-    {
-      name: 'Hardware',
-      desc: 'Devices needed for development',
-      price: '$69.99',
-    },
-    {
-      name: 'Landing page template',
-      desc: 'License',
-      price: '$49.99',
-    },
-  ];
 
 
 const checkoutView = () => {
