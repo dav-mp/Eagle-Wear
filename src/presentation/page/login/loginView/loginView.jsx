@@ -86,7 +86,6 @@ const loginView = () => {
             type: 1
         })
         setDialog(true)
-        console.log(data);
 
         AuthLoginApplication(data)
             .then(resp => {
