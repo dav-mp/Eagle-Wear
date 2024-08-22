@@ -104,7 +104,6 @@ export default function Dashboard({ children }) {
     const getAllProducts = () => {
       getAllProductsApplication()
         .then(resp => {
-            console.log('OLAAAAAAAAAAAAA');
             console.log(resp);
         })
         .catch(err => {

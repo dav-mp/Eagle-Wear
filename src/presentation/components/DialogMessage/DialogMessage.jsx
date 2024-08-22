@@ -10,9 +10,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const DialogMessage = (props) => {
-  // console.log(props);
-  const { handleButtonRead, handleButonReadAndWrite } = props
-  const [open, setOpen] = useState(false);
   const [infoDialog, setinfoDialog] = useState(props.info)
 
   const { title,
@@ -20,15 +17,10 @@ const DialogMessage = (props) => {
     buttonCancel,
     buttonAccept,
     buttonClose,
-    buttonAcceptDialogSave,
-    callback,
-    buttonRead,
-    butonReadAndWrite,
     type
   } = infoDialog
 
   useEffect(() => {
-    // console.log('DIALOGO:::', infoDialog);
     setinfoDialog(props.info)
 
 

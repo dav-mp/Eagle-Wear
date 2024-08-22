@@ -7,7 +7,6 @@ export const useUserActions = () => {
 	const getUserAction = () => {
 		const user = selectorApp((state) => state.user)
 		if (!user.email) {
-			console.log('MO tiene nada');
 			return null
 		}
 	  	return user

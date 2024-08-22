@@ -6,9 +6,12 @@ import { useSelector } from 'react-redux';
 import './popoverCart.css'
 import DialogMessage from '../DialogMessage/DialogMessage';
 import { useCartActions } from '../../hooks/store/useCartActionsStore';
+import useNavigationUtil from '../../../utils/GotoPath';
 
 const PopoverCart = () => {
     
+
+    const { goTo } = useNavigationUtil()
 
     const productsInCart = useSelector((state) => state.cart)
 
@@ -33,7 +36,6 @@ const PopoverCart = () => {
 
     //     const mapAux = new Map(productsSet)
         
-    //     console.log('Si lo tiene....', productsSet);
 
     //     const newProduct = productsInCart.at(-1)
         
@@ -71,7 +73,7 @@ const PopoverCart = () => {
         if(product.quantity === 1){
             setobjDialogMessage({
                 title: 'Delete Product',
-                body: '¿are you sure to delete the product?',
+                body: '¿Are you sure you want to delete this product?',
                 buttonCancel: true,
                 buttonAccept: true,
                 type: 0
@@ -89,7 +91,6 @@ const PopoverCart = () => {
     }
 
     const substractQuatityState = (product, del = false) => {
-        console.log('AYUDAAA', del);
         
         substractQuatityProductAction(product, del)
         setProductToDelete({})
@@ -106,6 +107,10 @@ const PopoverCart = () => {
 
     const handleCloseDialog = () => {
         setDialog(false)
+    }
+
+    const path = () => {
+        goTo('/Checkout')
     }
 
     const openPopover = Boolean(anchorEl);
@@ -144,7 +149,7 @@ const PopoverCart = () => {
                 }}
             >
                 <Typography variant="h6" sx={{ p: 2 }}>
-                    Productos
+                    Products
                 </Typography>
                 <List>
                     {/* Puedes reemplazar estos elementos con tus datos reales */}
@@ -165,6 +170,14 @@ const PopoverCart = () => {
                                     </Grid>
                                 </Grid>
                             ))}
+
+                            <Grid container spacing={2} py={1}>
+                                <Grid item xs={12} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                                    <Button variant='contained' size='large' disabled={Object.keys(productsInCart).length === 0} onClick={path}>
+                                        <Typography variant='body2'> Checkout </Typography>
+                                    </Button>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </ListItem>
                 </List>

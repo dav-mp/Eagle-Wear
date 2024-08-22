@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -18,14 +18,25 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './articlesSkeleton.css'
 import { useCartActions } from '../../hooks/store/useCartActionsStore';
 
+import ModalProduct from '../modalProductDesc/modalProductDesc'
+
 function Media(props) {
   const { loading = false, infoItem } = props;
 
   const { addProductsAction } = useCartActions()
 
+  const [openModalproduct, setOpenModalproduct] = useState(false)
+  const [productSelected, setproductSelected] = useState({})
+
   const addProductTocart = ( product ) => {
     addProductsAction(product)
   }
+  
+  const showModalProduct = (product) => {
+    setproductSelected(product)
+    setOpenModalproduct(!openModalproduct)
+  }
+  
 
   return (
     <div className='Card'>
@@ -109,8 +120,8 @@ function Media(props) {
                       </Grid>
 
                       <Grid item xs={12} sm={6} md={6} lg={6} display='flex' justifyContent='center' alignItems='center'>
-                            <Button variant='contained' color='primary'>
-                                see more...
+                            <Button variant='contained' color='primary' onClick={() => showModalProduct(infoItem)}>
+                                <Typography variant='body2'>see more...</Typography>
                             </Button>
                       </Grid>
                       <Grid pt={2} item xs={12} sm={12} md={12} lg={12} display='flex' justifyContent='center' alignItems='center'>
@@ -123,6 +134,13 @@ function Media(props) {
           )}
         </CardContent>
       </Card>
+      {openModalproduct
+        ? <ModalProduct 
+            showModalProduct={showModalProduct}
+            productSelected={productSelected}
+            />
+        : null
+      }
     </div>
   );
 }

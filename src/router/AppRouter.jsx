@@ -7,6 +7,7 @@ import useAuth from '../presentation/hooks/auth/useAuth';
 const Login = lazy(() => import('../presentation/page/login/login'))
 const Dashboard = lazy(() => import('../presentation/page/dashboard/dashboard'))
 const ListArticle = lazy(() => import('../presentation/page/articles/articles'))
+const Checkout = lazy(() => import('../presentation/page/checkout/checkout'))
 // const Demo = lazy(() => import('../pages/DemoPage'))
 // const NewBorn = lazy(() => import('../pages/NewBorn/NewBorn'))
 
@@ -14,7 +15,6 @@ const ListArticle = lazy(() => import('../presentation/page/articles/articles'))
 const AppRouter = () => {
   const { userStatus } = useAuth();
   const user = userStatus
-  // console.log('AAAAAAA', user);
 
   return (
     <BrowserRouter>
@@ -29,6 +29,7 @@ const AppRouter = () => {
               <Route element={<Dashboard />}>
                 {/* Rutas internas del Dashboard */}
                 <Route path="/" element={<Suspense fallback={<Spiner />}><ListArticle /></Suspense>} />
+                <Route path="/Checkout" element={<Suspense fallback={<Spiner />}><Checkout /></Suspense>} />
                 {/* <Route path="/NewBornPlan" element={<Suspense fallback={<Spiner />}><NewBorn /></Suspense>} /> */}
                 {/* Puedes agregar más rutas dentro del Dashboard según necesites */}
               </Route>
