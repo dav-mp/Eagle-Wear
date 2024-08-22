@@ -1,0 +1,8 @@
+.title {
+    white-space: nowrap;        /* Evita que el texto se envuelva en múltiples líneas */
+    overflow: hidden;           /* Oculta el texto que se desborda del contenedor */
+    text-overflow: ellipsis;    /* Muestra "..." al final del texto que se desborda */
+    display: block;             /* Asegura que el contenedor tenga un formato de bloque */
+    width: 100%;                /* Ajusta el ancho para que se ajuste al contenedor */
+}
+  

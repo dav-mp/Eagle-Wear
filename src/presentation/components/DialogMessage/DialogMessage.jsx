@@ -67,7 +67,7 @@ const DialogMessage = (props) => {
         {type === 0 ?
           // Messagge
           <>
-            <DialogTitle color="primary" style={{ borderBottom: '1px solid #C1C1C1', backgroundColor: '#004E98', color: '#fff' }} variant='h5'>{title}</DialogTitle>
+            <DialogTitle color="primary" style={{ borderBottom: '1px solid #C1C1C1', backgroundColor: '#e35d5d', color: '#000000' }} variant='h5'>{title}</DialogTitle>
             <DialogContent
               style={{
                 display: 'flex',

@@ -16,9 +16,16 @@ import Rating from '@mui/material/Rating';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import './articlesSkeleton.css'
+import { useCartActions } from '../../hooks/store/useCartActionsStore';
 
 function Media(props) {
   const { loading = false, infoItem } = props;
+
+  const { addProductsAction } = useCartActions()
+
+  const addProductTocart = ( product ) => {
+    addProductsAction(product)
+  }
 
   return (
     <div className='Card'>
@@ -107,7 +114,7 @@ function Media(props) {
                             </Button>
                       </Grid>
                       <Grid pt={2} item xs={12} sm={12} md={12} lg={12} display='flex' justifyContent='center' alignItems='center'>
-                            <Button variant='contained' color='success' startIcon={<ShoppingCartIcon />}>
+                            <Button variant='contained' color='success' startIcon={<ShoppingCartIcon />} onClick={() => addProductTocart(infoItem)}>
                                 Add Cart...
                             </Button>
                       </Grid>

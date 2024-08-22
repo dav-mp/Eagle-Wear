@@ -21,6 +21,8 @@ import { mainListItems, secondaryListItems } from './listItems';
 import { getAllProductsApplication } from '../../../../application/products/products.application';
 import DialogMessage from '../../../components/DialogMessage/DialogMessage';
 import { Outlet } from 'react-router-dom';
+import { Popover, ListItem } from '@mui/material';
+import PopoverCart from '../../../components/popoverCart/popoverCart';
 
 // import Chart from './Chart';
 // import Deposits from './Deposits';
@@ -168,11 +170,7 @@ export default function Dashboard({ children }) {
                         >
                         Articles
                         </Typography>
-                        <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <NotificationsIcon />
-                        </Badge>
-                        </IconButton>
+                        <PopoverCart />
                     </Toolbar>
                     </AppBar>
                     <Drawer variant="permanent" open={open}>
