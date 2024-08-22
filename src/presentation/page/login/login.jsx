@@ -9,8 +9,8 @@ const Login = ({ user }) => {
   const [isLoged, setIsLoged] = useState(user)
   const navigate = useNavigate()
   useEffect(() => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    console.log(apiUrl, isLoged);
+    // const apiUrl = import.meta.env.VITE_API_URL;
+    // console.log(apiUrl, isLoged);
     
     if (isLoged.email) {
       navigate('/')
